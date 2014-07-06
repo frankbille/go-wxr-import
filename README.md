@@ -1,4 +1,4 @@
-WXR Parser
+WXR Parser [![Build Status](https://travis-ci.org/frankbille/go-wxr-import.svg?branch=master)](https://travis-ci.org/frankbille/go-wxr-import)
 ==========
 
 Parser of WordPress backup XML format WXR (version 1.2).
