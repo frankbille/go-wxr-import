@@ -1,11 +1,14 @@
+// Parser for WordPress backup format WXR version 1.2
+// All structs also contains json marshal options, for easy serialization
+// to JSON format.
 package wxr
 
 import (
 	"encoding/xml"
-	"io/ioutil"
 	"time"
 )
 
+// Root tag, which is an <rss> tag in the XML.
 type Wxr struct {
 	Channels []Channel `xml:"channel" json:"channels"`
 }
@@ -111,11 +114,13 @@ const (
 	ISODATEFORMAT = "2006-01-02 15:04:05"
 )
 
+// Parse an incoming byte array representing the XML file in WXR format.
+// Returns a Wxr struct representing all data in the file.
 func ParseWxr(data []byte) Wxr {
   var wxr Wxr
-	xml.Unmarshal(b, &wxr)
+	xml.Unmarshal(data, &wxr)
 
-  // Parse dates
+	// Parse dates
 	for channelIndex, channel := range wxr.Channels {
 		pubDate, _ := time.Parse(time.RFC1123Z, channel.PubDateString)
 		wxr.Channels[channelIndex].PubDate = pubDate
