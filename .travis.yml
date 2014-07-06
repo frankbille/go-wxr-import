@@ -4,7 +4,7 @@ go:
 - 1.3
 - tip
 install:
-- go get github.com/smartystreets/goconvey
+- go get -t github.com/smartystreets/goconvey
 - go get github.com/axw/gocov/gocov
 - go get code.google.com/p/go.tools/cmd/cover
 - go get github.com/mattn/goveralls
